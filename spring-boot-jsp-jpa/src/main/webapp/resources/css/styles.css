@@ -1,0 +1,126 @@
+body {
+     margin-bottom:50px !important; 
+}
+
+.footer{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background-color: #f5f5f5;
+    text-align: center;
+}
+
+.main-nav{
+    margin-bottom: 12px;
+}
+
+.header > div{
+    margin-bottom: 0;
+}
+
+.panel-header-div {
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    border-radius: 4px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.panel-header-title{
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+
+}
+
+.panel-div{
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    border: 0;
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,.125);
+}
+
+.panel-content-div{
+    padding: 10px;
+}
+
+.panel-content-div > table {
+    margin-bottom: 0;
+}
+
+.panel-content-div table td{
+    font-size: 14px;
+    line-height: 1.5;
+    color: #212529;
+}
+
+.panel-content-div table th{
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #212529;
+    font-weight: bold;
+    border-bottom: 2px solid #dee2e6;
+    background-color: rgba(0,0,0,.03);
+    line-height: 1.5;
+}
+
+.button-voltar{
+    float: left;
+}
+
+.button-submit{
+    float: right;
+}
+
+
+
+.form-content{
+    margin: 0 auto;
+}
+
+.control-label{
+    padding-left: 3px;
+    font-weight: bold;
+    color: #1b1e21;
+}
+
+.table-actions{
+    display: flex;
+    justify-content: center;
+}
+
+.button-edit{
+    margin-right: 3px;    
+}
+
+.button-descricao{
+    margin-right: 3px;
+}
+
+.add-project-div{
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 30px;
+}
+
+form {
+    margin-block-end: 0;
+}
+
+.form-group:last-child{
+    margin-bottom: 0px;
+}
+
+.custom-select {
+    transition: none;
+}

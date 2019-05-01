@@ -1,0 +1,10 @@
+/spring-boot-jsp-jpa/target/*
+
+org.eclipse.*
+.project
+.classpath
+.attach_*
+
+#vscode
+launch.json
+settings.json
