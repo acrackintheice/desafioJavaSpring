@@ -1,63 +1,20 @@
-# Teste Programador Java
+# *Teste Programador Java
 Teste para programador Java Desbravador
 
+## *Instalação* ##
 
-Abaixo segue o que será necessário para a realização do teste, possibilitando que você deixe tudo preparado para o dia marcado:
-<br/> <br/>
-<b>Ferramentas</b>:
-<li>JDK 8</li>
-<li>Eclipse for Java EE</li> 
-<li>Wildfly Java EE7 Full & Web</li> 
-<br/>
-<b>Frameworks</b>:
-<li>Spring 4.0 / MVC / Data </li> 
-<li>Hibernate </li> 
-<li>Interface web com Bootstrap </li> 
-<br/>
-<b>Banco de Dados</b>:
-<li>Postgres</li> 
-<br/>
-<b>Entrega</b>:
- <li>O teste deverá ser enviado em um e-mail contento o link para o repositório deste projeto em sua conta pessoal no GitHub.</li>
- 
-Outras informações serão enviadas no e-mail juntamente com o teste.
+# *Configuração do Banco de Dados* #
 
-# Script do banco de dados:
+O projeto utiliza o SGBD PostgresSQL com as seguintes configurações:
+```
+spring.datasource.url=jdbc:postgresql://localhost:5432/portproj
+spring.datasource.username=postgres
+spring.datasource.password=postgres
+```
 
-* Este script criará as tabelas necessárias.
-* A estrutura criada não deve ser alterada!
+Ou seja, precisa existir uma base dados com o nome *portproj*, e um usuário com nome e senha *postgres*.
 
-`-- -----------------------------------------------------`<br/>
-`-- Table Pessoa`<br/>
-`-- -----------------------------------------------------`<br/>
-`CREATE TABLE pessoa`<br/>
-`( id bigserial NOT NULL,`<br/>
-`nome character varying(100) NOT NULL,`<br/>
-`datanascimento date,`<br/>
-`cpf character varying(14),`<br/>
-`funcionario boolean,`<br/>
-`CONSTRAINT pk_pessoa PRIMARY KEY (id));`<br/>
-
-
-`-- -----------------------------------------------------`<br/>
-`-- Table Projeto`<br/>
-`-- -----------------------------------------------------`<br/>
-`CREATE TABLE  projeto (`<br/>
-`  id bigserial NOT NULL,`<br/>
-`  nome VARCHAR(200) NOT NULL,`<br/>
-`  data_inicio DATE ,`<br/>
-`  data_previsao_fim DATE ,`<br/>
-`  data_fim DATE ,`<br/>
-`  descricao VARCHAR(5000) ,`<br/>
-`  status VARCHAR(45) ,`<br/>
-`  orcamento FLOAT ,`<br/>
-`  risco VARCHAR(45) ,`<br/>
-`  idgerente bigserial NOT NULL,`<br/>
-`  CONSTRAINT pk_projeto PRIMARY KEY (id),`<br/>
-`  CONSTRAINT fk_gerente FOREIGN KEY (idgerente)`<br/>
-`  REFERENCES pessoa (id) MATCH SIMPLE`<br/>
-`  ON UPDATE NO ACTION ON DELETE NO ACTION) `<br/>
-
+Mesmo havendo a instrução de que o script de estrutura das tabelas não deveria ser alterado, isso precisou ser feito por causa de erros na definição da tabela Membro:
 
 `-- -----------------------------------------------------`<br/>
 `-- Table Membros`<br/>
@@ -73,4 +30,47 @@ Outras informações serão enviadas no e-mail juntamente com o teste.
 `REFERENCES pessoa (id) MATCH SIMPLE`<br/>
 `ON UPDATE NO ACTION ON DELETE NO ACTION);`<br/>
 
-https://raw.githubusercontent.com/acelant/testeBiblioteca/master/TesteProjetos.png
+A chave primária criada, deveria ser composta e incluir referências para pessoas e projetos, o que não ocorre no script, que define uma chave simples referênciado apenas projetos:
+
+`CONSTRAINT pk_membros_projeto PRIMARY KEY (idprojeto),`
+
+A próxima constraint também não faz muito sentido, pois ela faz o campo *idpessoa* referênciar o campo *id* da tabela *Projeto*, como pode ser visto abaixo:
+
+`CONSTRAINT fk_membros_pessoa FOREIGN KEY (idpessoa)`<br/>
+`REFERENCES projeto (id) MATCH SIMPLE`<br/>
+`ON UPDATE NO ACTION ON DELETE NO ACTION,`
+
+Resumindo, com essas configurações além de termos uma chave primária deficiente, o campo *idprojeto* não é relacionado à chave estrangeira alguma.
+
+Para corrigir esses erros esse script foi editado e uma nova versão foi adicionada ao projeto:
+
+https://github.com/acrackintheice/desafioJavaSpring/blob/master/spring-boot-jsp-jpa/src/main/resources/sql/create-tables.sql
+
+# *Execução da aplicação* #
+
+Como as outras dependências do projeto são fornecidas pelo Maven, após a configuração do banco de dados a aplicação já pode ser executada, o que pode acontecer de duas formas: utilizando o spring-boot ou gerando o .war/.jar e um servidor web tradicional.
+
+# Spring Boot #
+
+Para o executar o projeto com o spring-boot basta estar na pasta raiz do projeto (spring-boot-jsp-jpa), que não  a pasta raiz do repositório, e executar o comando:
+```
+mvn spring-boot:run
+```
+
+# Wildfly #
+Para executar o projeto no servidor Wildfly basta gerar um arquivo .war com o comando:
+```
+mvn clean install
+```
+Com isso o arquivo .war será gerado no caminho 
+```
+/spring-boot-jsp-jpa/target/spring-boot-jsp-jpa.war
+```
+Para rodar a aplicação no Wildfly deve-se colocar o arquivo .war gerado em
+```
+<path_to_wildfly>/standalone/deployments
+```
+E, para sistemas Linux, executar o script
+```
+<path_to_wildfly>/bin/standalone.sh
+```
