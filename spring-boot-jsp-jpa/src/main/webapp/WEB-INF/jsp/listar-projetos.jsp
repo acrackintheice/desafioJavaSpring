@@ -20,16 +20,17 @@
                             <div class="panel-header-title"> Lista de Projetos </div>
                         </div>
                         <div class="panel-content-div">
-                            <table class="table table-hover">
+                            <table class="table table-hover table-responsive-lg">
                                 <tr >
-                                    <th>Nome do Projeto</th>
-                                    <th>Gerente Responsável</th>
-                                    <th>Data de Início </th>
-                                    <th>Data de Fim </th>
-                                    <th>Data de Fim Prevista</th>
-                                    <th>Orçamento </th>
-                                    <th>Status </th>
-                                    <th style="text-align: center">Ações</th>
+                                    <th>Nome</th>
+                                    <th>Gerente</th>
+                                    <th>Início </th>
+                                    <th>Fim </th>
+                                    <th>Fim Previsto</th>
+                                    <th>Orçamento</th>
+                                    <th>Status</th>
+                                    <th class="centered">Risco</th>
+                                    <th class="centered">Ações</th>
                                 </tr>
 
                                 <!-- loop over and print our customers -->
@@ -43,12 +44,19 @@
                                         <td> <fmt:formatDate type="date" value="${projeto.dataPrevisaoFim}"/> </td>
                                         <td>${projeto.orcamento}</td>
                                         <td>${projeto.status}</td>
+                                        <td>
+                                            <c:if test="${(!(projeto.risco.equals(null)) && projeto.risco != '')}">
+                                                <div class="${projeto.risco} risco-div" >
+                                                    ${projeto.risco}
+                                                </div>
+                                            </c:if>
+                                        </td>
 
                                         <td>
                                             <div class="table-actions">
                                                 <button type="button" class="btn-action btn btn-sm btn-info button-descricao" data-url="projetos/${projeto.id}" data-toggle="modal" data-target="#exampleModal" data-remote="false"> Descrição </button>
                                                 <button onclick="window.location.href='/projetos/editar/${projeto.id}'"  type="button" class="btn btn-primary btn-sm button-edit">Editar</button>
-                                                <c:if test="${!(projeto.status == 'iniciado' || projeto.status == 'em andamento' || projeto.status == 'encerrado')}">
+                                                <c:if test="${!(projeto.status == 'iniciado' || projeto.status == 'em andamento' || projeto.status == 'encerrado')}" >
                                                     <button onclick="if (confirm('Tem certeza que deseja excluir este projeto?')) window.location.href='/projetos/excluir/${projeto.id}'" type="button" class="btn btn-danger  btn-sm button-delete">Excluir</button>
                                                 </c:if>
                                             </div>

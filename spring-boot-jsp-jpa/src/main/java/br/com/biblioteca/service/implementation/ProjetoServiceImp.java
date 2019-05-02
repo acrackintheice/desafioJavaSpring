@@ -31,6 +31,7 @@ public class ProjetoServiceImp implements ProjetoService {
 
     @Override
     public void save(Projeto p) {
+        p.setRisco(calcularRisco(p));
         projetoRepository.save(p);
     }
 
@@ -40,6 +41,16 @@ public class ProjetoServiceImp implements ProjetoService {
             projetoRepository.delete(p);
         else
             logger.error("Não foi possível deletar o projeto com id [" + p.getId() + "] pois seu status era: " + p.getStatus());
+    }
+
+    @Override
+    public String calcularRisco(Projeto p) {
+        if (p.getDataPrevisaoFim().after(p.getDataFim()) || p.getStatus().equals("cancelado"))
+            return "alto";
+        else if (p.getOrcamento() >  1000000.0)
+            return "médio";
+        else
+            return "baixo";
     }
 
 }

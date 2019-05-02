@@ -14,4 +14,6 @@ public interface ProjetoService{
 
     void delete(Projeto p);
 
+    String calcularRisco(Projeto p);
+
 } 

@@ -28,10 +28,6 @@
                         <a class="nav-link" href="/index">Home <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-primary my-2 my-sm-0 button-submit" type="submit">Search</button>
-                </form>
             </div>
         </nav>
         <div id="body">
