@@ -146,3 +146,7 @@ Como o tempo acabou ficando curto para a realização das duas tarefas, Java e F
 **Regras de Negócio**
 
 Algumas das regras de negócio não ficaram muito claras para mim, me pareceu haver incoerências entre as informaçes do pdf da tarefas e a estrutura base do sistema.
+
+**Repositório**
+
+O repositório ficou com poucos commits pois tive que recrià-lo após identificar que o repositório anterior infringia algumas regras da tarefa.
