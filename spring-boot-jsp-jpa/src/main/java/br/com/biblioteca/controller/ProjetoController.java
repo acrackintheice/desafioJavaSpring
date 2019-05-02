@@ -82,7 +82,8 @@ public class ProjetoController {
 	String criar(Model model) {
 		model.addAttribute("pessoas", pessoaService.findAll());
 		model.addAttribute("projeto", new Projeto());
-		model.addAttribute("title", "Criação de Projeto");
+		model.addAttribute("pageTitle", "Criação de Projeto");
+		model.addAttribute("headerTitle", "Novo Projeto");
 		return "form-projeto";
 	}
 
@@ -92,6 +93,7 @@ public class ProjetoController {
 		model.addAttribute("pessoas", pessoaService.findAll());
 		model.addAttribute("projeto", p);
 		model.addAttribute("title", "Edição de Projeto");
+		model.addAttribute("headerTitle", "Projeto em Edição");
 		return "form-projeto";
 	}
 

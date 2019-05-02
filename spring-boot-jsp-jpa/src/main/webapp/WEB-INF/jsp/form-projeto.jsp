@@ -12,7 +12,7 @@
                 <div class="col-6" style="margin-bottom: 1rem;">
                     <div class="panel-div">
                         <div class="panel-header-div">
-                            <div class="panel-header-title"> Lista de Projetos </div>
+                            <div class="panel-header-title"> ${headerTitle} </div>
                         </div>
                         <div class="panel-content-div">
                             <form:form action="/projetos/salvar" 

@@ -27,7 +27,7 @@
                                     <th>Início </th>
                                     <th>Fim </th>
                                     <th>Fim Previsto</th>
-                                    <th>Orçamento</th>
+                                    <th>Orçamento (R$)</th>
                                     <th>Status</th>
                                     <th class="centered">Risco</th>
                                     <th class="centered">Ações</th>
@@ -42,7 +42,10 @@
                                         <td> <fmt:formatDate type="date" value="${projeto.dataInicio}"/> </td>
                                         <td> <fmt:formatDate type="date" value="${projeto.dataFim}"/> </td>
                                         <td> <fmt:formatDate type="date" value="${projeto.dataPrevisaoFim}"/> </td>
-                                        <td>${projeto.orcamento}</td>
+                                        <td><fmt:formatNumber 
+                                                value="${projeto.orcamento}" 
+                                                maxFractionDigits="2"/>
+                                        </td>
                                         <td>${projeto.status}</td>
                                         <td>
                                             <c:if test="${(!(projeto.risco.equals(null)) && projeto.risco != '')}">

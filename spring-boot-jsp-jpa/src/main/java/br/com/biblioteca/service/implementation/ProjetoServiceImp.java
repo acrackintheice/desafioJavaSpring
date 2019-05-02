@@ -45,7 +45,7 @@ public class ProjetoServiceImp implements ProjetoService {
 
     @Override
     public String calcularRisco(Projeto p) {
-        if (p.getDataPrevisaoFim().after(p.getDataFim()) || p.getStatus().equals("cancelado"))
+        if (p.getDataPrevisaoFim().before(p.getDataFim()) || p.getStatus().equals("cancelado"))
             return "alto";
         else if (p.getOrcamento() >  1000000.0)
             return "médio";
