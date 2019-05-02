@@ -74,3 +74,15 @@ E, para sistemas Linux, executar o script
 ```
 <path_to_wildfly>/bin/standalone.sh
 ```
+
+# *Demo* #
+
+Listagem de projeto:
+
+![Demo Image](lista-projetos.png)
+
+
+Criação de Projetos (a edição usa a mesma tela):
+
+![Demo Image](novo-projeto.png)
+
