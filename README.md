@@ -12,7 +12,9 @@ spring.datasource.username=postgres
 spring.datasource.password=postgres
 ```
 
-Ou seja, precisa existir uma base dados com o nome *portproj*, e um usuário com nome e senha *postgres*.
+Ou seja, precisa existir uma base dados com o nome *portproj*, e um usuário com nome e senha *postgres* no ambiente de execução do sistema.
+
+** **
 
 Mesmo havendo a instrução de que o script de estrutura das tabelas não deveria ser alterado, isso precisou ser feito por causa de erros na definição da tabela Membro:
 
