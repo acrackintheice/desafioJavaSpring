@@ -3,7 +3,7 @@ Teste para programador Java Desbravador
 
 ## *Instalação* ##
 
-# *Configuração do Banco de Dados* #
+### *Configuração do Banco de Dados* ###
 
 O projeto utiliza o SGBD PostgresSQL com as seguintes configurações:
 ```
@@ -46,18 +46,18 @@ Para corrigir esses erros esse script foi editado e uma nova versão foi adicion
 
 https://github.com/acrackintheice/desafioJavaSpring/blob/master/spring-boot-jsp-jpa/src/main/resources/sql/create-tables.sql
 
-# *Execução da aplicação* #
+### *Execução da aplicação* ###
 
 Como as outras dependências do projeto são fornecidas pelo Maven, após a configuração do banco de dados a aplicação já pode ser executada, o que pode acontecer de duas formas: utilizando o spring-boot ou gerando o .war/.jar e um servidor web tradicional.
 
-# Spring Boot #
+### Spring Boot ###
 
 Para o executar o projeto com o spring-boot basta estar na pasta raiz do projeto (spring-boot-jsp-jpa), que não  a pasta raiz do repositório, e executar o comando:
 ```
 mvn spring-boot:run
 ```
 
-# Wildfly #
+### Wildfly ###
 Para executar o projeto no servidor Wildfly basta gerar um arquivo .war com o comando:
 ```
 mvn clean install
@@ -75,7 +75,7 @@ e, para sistemas Linux, executar o script
 <path_to_wildfly>/bin/standalone.sh
 ```
 
-# *Demo* #
+## *Demo* ##
 
 Listagem de projeto:
 
@@ -86,9 +86,9 @@ Criação de Projetos (a edição usa a mesma tela):
 
 ![Demo Image](novo-projeto.png)
 
-# *Inserção de Dados* #
+### *Inserção de Dados* ###
 
-## *Pessoas* ##
+## Pessoas ##
 
 Não foram desenvolvidas interfaces web para inserção de novas pessoas no banco de dados, mas isso pode ser feito utilizando a interface REST gerada aumtomaticamente pelo spring-data-rest. 
 
@@ -117,7 +117,7 @@ HTTP POST -> http://localhost:8080/pessoas
 }
 ```
 
-## *Membros* ##
+## Membros ##
 Como descrito na tarefa, a inserção de membros pode ser feita via web services. Dessa forma, foi criada uma entrada no endereço http://localhost:8080/projetos/{id}/membros para recebimento de mensagens de inserção de pessoas(membros) em projetos. Dessa forma, para inserir um novo membro à um projeto, é necessrio enviar uma mensagem HTTP POST para o endereço http://localhost:8080/projetos/{id}/membros, onde {id} corresponde ao id do projeto no qual se pretende inserir o novo membro, contendo no corpo da mensagem o nome e função, em JSON, da pessoa a ser inserida como membro. Exemplo:
 ```
 http://localhost:8080/projetos/34/membros
@@ -129,9 +129,18 @@ http://localhost:8080/projetos/34/membros
 OBS: O enunciado da pedia que a função do membro no projeto fosse informada, mas essa informação não existe no banco de dados e não é armazenada pelo sistema.
 OBS: Como nenhuma das funcionalidades exgidas envolviam membros, essas informações nunca são exibidas pelo sistema.
 
-## *Projetos* ##
+## Projetos ##
 
 A criação de novos projetos é realizada diretamente na interface web do sistema, no endereço http://localhost:8080/projetos/criar.
 
 OBS: No momento algum problema está impossibilitando que o spring-data-rest gere uma api rest rest para a entidade Projeto, gastei bastante tempo nisso mas não consegui identificar o problema. 
 
+## *Notas Finais* ##
+
+*Testes*
+
+Como o tempo acabou ficando curto para a realização das duas tarefas, Java e Frontend, não foi possível implementar os testes unitários para as regras de negócios descritas na tarefa.
+
+*Regras de Negócio*
+
+Algumas das regras de negócio não ficaram muito claras para mim, me pareceu haver incoerências entre as informaçes do pdf da tarefas e a estrutura base do sistema.
