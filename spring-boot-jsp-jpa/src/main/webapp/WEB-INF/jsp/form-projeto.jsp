@@ -107,7 +107,7 @@
                                             
                                             <div class="col">
                                                 <label for="orcamento" class="control-label">Orçamento (R$)</label>
-                                                <form:input type="number" path="orcamento" cssClass="form-control" />
+                                                <form:input type="number" step="0.01" min="0" path="orcamento" cssClass="form-control" />
                                                 <form:errors path="orcamento" cssClass="error" />
                                             </div>
                                             

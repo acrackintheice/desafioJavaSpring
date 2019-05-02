@@ -41,18 +41,6 @@ public class ProjetoController {
 		binder.registerCustomEditor(Date.class, "dataInicio", new CustomDateEditor(dateFormatter, true));
 		binder.registerCustomEditor(Date.class, "dataFim", new CustomDateEditor(dateFormatter, true));
 		binder.registerCustomEditor(Date.class, "dataPrevisaoFim", new CustomDateEditor(dateFormatter, true));
-		binder.registerCustomEditor(String.class, "descricao", new PropertyEditorSupport() {
-			@Override
-			public void setAsText(String text) throws IllegalArgumentException {
-				if (text.equals("") || text.equals(null)) {
-					setValue(null);
-				} else {
-					Long id = Long.parseLong(text);
-					Pessoa pessoa = pessoaService.getOne(id);
-					setValue(pessoa);
-				}
-			}
-		});
 		binder.registerCustomEditor(Pessoa.class, "gerente", new PropertyEditorSupport() {
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
