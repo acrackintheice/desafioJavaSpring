@@ -62,15 +62,15 @@ Para executar o projeto no servidor Wildfly basta gerar um arquivo .war com o co
 ```
 mvn clean install
 ```
-Com isso o arquivo .war será gerado no caminho 
+Com isso o arquivo .war será gerado no caminho: 
 ```
 /spring-boot-jsp-jpa/target/spring-boot-jsp-jpa.war
 ```
-Para rodar a aplicação no Wildfly deve-se colocar o arquivo .war gerado em
+Para rodar a aplicação no Wildfly deve-se colocar o arquivo .war gerado no diretório
 ```
 <path_to_wildfly>/standalone/deployments
 ```
-E, para sistemas Linux, executar o script
+e, para sistemas Linux, executar o script
 ```
 <path_to_wildfly>/bin/standalone.sh
 ```
@@ -85,4 +85,53 @@ Listagem de projeto:
 Criação de Projetos (a edição usa a mesma tela):
 
 ![Demo Image](novo-projeto.png)
+
+# *Inserção de Dados* #
+
+## *Pessoas* ##
+
+Não foram desenvolvidas interfaces web para inserção de novas pessoas no banco de dados, mas isso pode ser feito utilizando a interface REST gerada aumtomaticamente pelo spring-data-rest. 
+
+Para inserir uma nova pessoa no sistema é necessário enviar um HTTP POST com os dados da pessoa no corpo da mensagem para o endereço http://localhost:8080/pessoas. Os exemplos abaixo mostram quais sãos os dados necessários para a criação de pessoas no sistema:
+```
+HTTP POST -> http://localhost:8080/pessoas
+{
+	"nome": "Bruce Willis",
+	"dataNascimento": "2011-15-07T03:00:00.208Z",
+	"cpf": "12345678912345",
+	"funcionario": false
+}
+HTTP POST -> http://localhost:8080/pessoas
+{
+	"nome": "João Goulart",
+	"dataNascimento": "1965-07-02T03:00:00.208Z",
+	"cpf": "72849628132345",
+	"funcionario": true
+}
+HTTP POST -> http://localhost:8080/pessoas
+{
+	"nome": "Bill Clinton",
+	"dataNascimento": "1985-11-08T03:00:00.208Z",
+	"cpf": "77777628132345",
+	"funcionario": true
+}
+```
+
+## *Membros* ##
+Como descrito na tarefa, a inserção de membros pode ser feita via web services. Dessa forma, foi criada uma entrada no endereço http://localhost:8080/projetos/{id}/membros para recebimento de mensagens de inserção de pessoas(membros) em projetos. Dessa forma, para inserir um novo membro à um projeto, é necessrio enviar uma mensagem HTTP POST para o endereço http://localhost:8080/projetos/{id}/membros, onde {id} corresponde ao id do projeto no qual se pretende inserir o novo membro, contendo no corpo da mensagem o nome e função, em JSON, da pessoa a ser inserida como membro. Exemplo:
+```
+http://localhost:8080/projetos/34/membros
+{
+	"nome": "Bill Clinton",
+	"funcao" : "Presidente"
+}
+```
+OBS: O enunciado da pedia que a função do membro no projeto fosse informada, mas essa informação não existe no banco de dados e não é armazenada pelo sistema.
+OBS: Como nenhuma das funcionalidades exgidas envolviam membros, essas informações nunca são exibidas pelo sistema.
+
+## *Projetos* ##
+
+A criação de novos projetos é realizada diretamente na interface web do sistema, no endereço http://localhost:8080/projetos/criar.
+
+OBS: No momento algum problema está impossibilitando que o spring-data-rest gere uma api rest rest para a entidade Projeto, gastei bastante tempo nisso mas não consegui identificar o problema. 
 
