@@ -137,10 +137,10 @@ OBS: No momento algum problema está impossibilitando que o spring-data-rest ger
 
 ## *Notas Finais* ##
 
-*Testes*
+**Testes**
 
 Como o tempo acabou ficando curto para a realização das duas tarefas, Java e Frontend, não foi possível implementar os testes unitários para as regras de negócios descritas na tarefa.
 
-*Regras de Negócio*
+**Regras de Negócio**
 
 Algumas das regras de negócio não ficaram muito claras para mim, me pareceu haver incoerências entre as informaçes do pdf da tarefas e a estrutura base do sistema.
